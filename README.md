@@ -22,17 +22,17 @@ python azmon-uptime.py
 ## Sample Output
 ```
 -------- VM Runtime --------
-u-vm - -9 days, 7:50:27
-win10-vs - 26 days, 1:19:12
-win10-vm1 - 30 days, 23:59:00
-u-vm2 - 30 days, 23:59:00
-aks-nodepool1-12508969-1 - 30 days, 23:59:00
-aks-nodepool1-54814196-1 - 30 days, 23:59:00
-aks-nodepool1-54814196-0 - 30 days, 23:59:00
-aks-nodepool1-54814196-2 - 30 days, 23:59:00
-aks-agentpool-17932189-0 - 30 days, 23:59:00
-aks-agentpool-87903270-0 - 30 days, 23:59:00
-aks-nodepool1-33200514-0 - 30 days, 23:59:00
-aks-nodepool1-33200514-1 - 30 days, 23:59:00
+aks-nodepool1-33200514-0 - 19 days, 0:47:23
+aks-nodepool1-33200514-1 - 19 days, 0:47:10
+aks-agentpool-87903270-0 - 19 days, 7:31:36
+aks-agentpool-17932189-0 - 22 days, 3:28:26
+aks-nodepool1-54814196-2 - 24 days, 6:43:43
+aks-nodepool1-54814196-0 - 24 days, 9:39:31
+aks-nodepool1-54814196-1 - 24 days, 9:39:46
+aks-nodepool1-12508969-1 - 24 days, 9:46:58
+u-vm2 - 25 days, 7:45:34
+u-vm - 0:03:25
+win10-vs - 35 days, 7:40:27
+win10-vm1 - 26 days, 1:23:09
 ----------------------------
 ```
