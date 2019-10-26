@@ -27,6 +27,7 @@ with open('QueryResult.csv', mode='r') as f:
     EVENT_CAT = "Administrative"
     STATUS = "Succeeded"
     OPERATIONS = ["Deallocate Virtual Machine", "Start Virtual Machine", "Create or Update Virtual Machine", "Restart Virtual Machine"]
+    START_OPERATIONS = ["Start Virtual Machine", "Create or Update Virtual Machine", "Restart Virtual Machine"]
     vm = defaultdict(list)
     vm_run_list = defaultdict(list)
     DEFAULT_STOP_TIME = "2019-10-31T23:59:00.839Z"
@@ -59,7 +60,7 @@ with open('QueryResult.csv', mode='r') as f:
         #for each status
         for azvm in vm_status_list:
             status_list_count += 1
-            if(azvm["Operation name"] == "Start Virtual Machine"):
+            if(azvm["Operation name"] in START_OPERATIONS):
                 start_time = azvm["Time"]
             elif(azvm["Operation name"] == "Deallocate Virtual Machine"):
                 stop_time = azvm["Time"]
@@ -70,7 +71,6 @@ with open('QueryResult.csv', mode='r') as f:
             if ((len(vm_status_list) == status_list_count+1) and start_time == None):
                 start_time = DEFAULT_START_TIME
             
-
             #See if we have both a start and end time
             if (start_time != None and stop_time != None):
                 if (runtime == None):
