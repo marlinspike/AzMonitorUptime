@@ -3,6 +3,8 @@ A Python 3 tool to parse Azure Monitor logs to retrieve VM uptime for all VMs du
 
 ## Requirements
 - Python 3
+- Click (pip install Click)
+- PrettyTable (pip install PrettyTable)
 - Download Azure monitor logs, and store them as **QueryResult.csv** in the same folder as azmon-uptime.py
 
 ## Querying Azure Monitor
@@ -16,23 +18,27 @@ A Python 3 tool to parse Azure Monitor logs to retrieve VM uptime for all VMs du
 **Finally, place downloaded file (QueryResult.csv), in the same folder as azmon-uptime.py**
 
 ## Usage
-python azmon-uptime.py
+**Default Usage**: python azmon-uptime.py init
+**Optional Args**: CSVFile, Default Start Time, Default Stop Time - These are the defaults for Start and Stop times for VMs, in case they were Started/Stopped outside the period of monitoring covered in the CSV file. Unless you provide a Start time, the app has no knowledge that the VM was up, so it would otherwise just assume it was turned off!
 
+**Optional Usage**: python azmon-uptime.py init --default_start 2019-10-01 --default_stop 2019-10-31 --file QueryResults.csv
 
 ## Sample Output
 ```
--------- VM Runtime --------
-aks-nodepool1-33200514-0 - 19 days, 0:47:23
-aks-nodepool1-33200514-1 - 19 days, 0:47:10
-aks-agentpool-87903270-0 - 19 days, 7:31:36
-aks-agentpool-17932189-0 - 22 days, 3:28:26
-aks-nodepool1-54814196-2 - 24 days, 6:43:43
-aks-nodepool1-54814196-0 - 24 days, 9:39:31
-aks-nodepool1-54814196-1 - 24 days, 9:39:46
-aks-nodepool1-12508969-1 - 24 days, 9:46:58
-u-vm2 - 25 days, 7:45:34
-u-vm - 0:03:25
-win10-vs - 35 days, 7:40:27
-win10-vm1 - 26 days, 1:23:09
-----------------------------
++----+--------------------------+------------------+
+| #  | VM Name                  | Runtime          |
++----+--------------------------+------------------+
+| 1  | aks-nodepool1-33200514-0 | 19 days, 0:47:23 |
+| 2  | aks-nodepool1-33200514-1 | 19 days, 0:47:10 |
+| 3  | aks-agentpool-87903270-0 | 19 days, 7:31:36 |
+| 4  | aks-agentpool-17932189-0 | 22 days, 3:28:26 |
+| 5  | aks-nodepool1-54814196-2 | 24 days, 6:43:43 |
+| 6  | aks-nodepool1-54814196-0 | 24 days, 9:39:31 |
+| 7  | aks-nodepool1-54814196-1 | 24 days, 9:39:46 |
+| 8  | aks-nodepool1-12508969-1 | 24 days, 9:46:58 |
+| 9  | u-vm2                    | 25 days, 7:45:34 |
+| 10 | u-vm                     | 0:03:25          |
+| 11 | win10-vs                 | 35 days, 7:40:27 |
+| 12 | win10-vm1                | 26 days, 1:23:09 |
++----+--------------------------+------------------+
 ```
