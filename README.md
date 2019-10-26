@@ -1,5 +1,5 @@
 # AzMonitorUptime
-A Python 3 tool to parse Azure Monitor logs to retrieve VM uptime for all VMs during a given month
+A Python 3 tool to parse **Azure Monitor Activity Logs** to retrieve VM uptime for all VMs during a given month. This is useful for when you either don't have your VMs reporting to a Log Analytics workspace, or they only reported data for a part of the time you want to report on. Another option would be to look at billing data, but that's often previledged information. AzMonitorUptime allows you to derive uptime reports from Actvitity Logs.
 
 ## Requirements
 - Python 3
@@ -12,6 +12,8 @@ A Python 3 tool to parse Azure Monitor logs to retrieve VM uptime for all VMs du
 **Navigate to Azure Monitor**
 ![Navigate to Azure Monitor](https://raw.githubusercontent.com/marlinspike/AzMonitorUptime/master/img/0-AzureMonitor.png)
 
+**Select Activity Log**
+
 **Construct the query as such, and Download**
 ![Create and Download Azure Monitor Query Data](https://raw.githubusercontent.com/marlinspike/AzMonitorUptime/master/img/1-AzMonitorQuery.png)
 
@@ -19,6 +21,7 @@ A Python 3 tool to parse Azure Monitor logs to retrieve VM uptime for all VMs du
 
 ## Usage
 **Default Usage**: python azmon-uptime.py init
+
 **Optional Args**: CSVFile, Default Start Time, Default Stop Time - These are the defaults for Start and Stop times for VMs, in case they were Started/Stopped outside the period of monitoring covered in the CSV file. Unless you provide a Start time, the app has no knowledge that the VM was up, so it would otherwise just assume it was turned off!
 
 **Optional Usage**: python azmon-uptime.py init --default_start 2019-10-01 --default_stop 2019-10-31 --file QueryResults.csv
