@@ -26,7 +26,7 @@ with open('QueryResult.csv', mode='r') as f:
     SEARCH_TERM = "Microsoft.Compute/virtualMachines"
     EVENT_CAT = "Administrative"
     STATUS = "Succeeded"
-    OPERATIONS = ["Deallocate Virtual Machine", "Start Virtual Machine"]
+    OPERATIONS = ["Deallocate Virtual Machine", "Start Virtual Machine", "Create or Update Virtual Machine", "Restart Virtual Machine"]
     vm = defaultdict(list)
     vm_run_list = defaultdict(list)
     DEFAULT_STOP_TIME = "2019-10-31T23:59:00.839Z"
@@ -73,7 +73,12 @@ with open('QueryResult.csv', mode='r') as f:
 
             #See if we have both a start and end time
             if (start_time != None and stop_time != None):
-                runtime = get_elapsed_time(time.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%fZ"), time.strptime(stop_time, "%Y-%m-%dT%H:%M:%S.%fZ"))
+                if (runtime == None):
+                    runtime = get_elapsed_time(time.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%fZ"), time.strptime(stop_time, "%Y-%m-%dT%H:%M:%S.%fZ"))
+                else:
+                    runtime = runtime + get_elapsed_time(time.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%fZ"), time.strptime(stop_time, "%Y-%m-%dT%H:%M:%S.%fZ"))
                 vm_run_list[get_vm_name_from_resource(azvm["Resource"])].append(runtime)
+                start_time = None
+                stop_time = None
     
     print_vm_runtime(vm_run_list)
