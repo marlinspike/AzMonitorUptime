@@ -73,7 +73,7 @@ def init(default_start:str, default_stop:str, file:str):
         for vm_name, vm_status_list in vm.items():
             start_time:datetime = None
             stop_time:datetime = None
-            runtime:datetime = None
+            runtime:float = None
             status_list_count = -1        
 
             #for each status
@@ -93,9 +93,9 @@ def init(default_start:str, default_stop:str, file:str):
                 #See if we have both a start and end time
                 if (start_time != None and stop_time != None):
                     if (runtime == None):
-                        runtime = get_elapsed_time(time.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%fZ"), time.strptime(stop_time, "%Y-%m-%dT%H:%M:%S.%fZ"))
+                        runtime = get_elapsed_time(time.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%fZ"), time.strptime(stop_time, "%Y-%m-%dT%H:%M:%S.%fZ")).total_seconds()
                     else:
-                        runtime = runtime + get_elapsed_time(time.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%fZ"), time.strptime(stop_time, "%Y-%m-%dT%H:%M:%S.%fZ"))
+                        runtime = runtime + get_elapsed_time(time.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%fZ"), time.strptime(stop_time, "%Y-%m-%dT%H:%M:%S.%fZ")).total_seconds()
                     vm_run_list[get_vm_name_from_resource(azvm["Resource"])].append(runtime)
                     start_time = None
                     stop_time = None
@@ -136,15 +136,42 @@ def print_vm_runtime(oDict):
 # Prints output based on the vm data passed
 def printOutputTable(oDict):
     row:int = 0
-    table = PrettyTable(['#','VM Name', 'Runtime'])
+    total_run_time:float = 0.0
+    table = PrettyTable(['#','VM Name', 'Runtime', 'Runtime in Seconds'])
     table.title = f"AzMon v0.90"
     table.align['#'] = "l"
     table.align['VM Name'] = "l"
     table.align['Runtime'] = "l"
     for vm, runtime in oDict.items():
         row += 1
-        table.add_row([row, vm, runtime[0]])
+        count = len(runtime)
+        for i in runtime:
+            total_run_time += i
+
+        table.add_row([row, vm, get_runtime_display(total_run_time), total_run_time])
+        total_run_time = 0
     print(f"\n\n{table}\n")
+
+###
+# Gets runtime in formatted display of Weeks, Days, Hours, Minutes, Seconds
+def get_runtime_display(seconds:float, granularity=4)->str:
+    intervals = (
+    ('weeks', 604800),  # 60 * 60 * 24 * 7
+    ('days', 86400),    # 60 * 60 * 24
+    ('hours', 3600),    # 60 * 60
+    ('minutes', 60),
+    ('seconds', 1),
+    )
+    result = []
+
+    for name, count in intervals:
+        value = seconds // count
+        if value:
+            seconds -= value * count
+            if value == 1:
+                name = name.rstrip('s')
+            result.append("{} {}".format(value, name))
+    return ', '.join(result[:granularity])
 
 
 if __name__ == '__main__':
