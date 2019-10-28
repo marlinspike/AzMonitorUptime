@@ -31,20 +31,20 @@ pip install -r requirements.txt
 
 ## Sample Output
 ```
-+----+--------------------------+------------------+
-| #  | VM Name                  | Runtime          |
-+----+--------------------------+------------------+
-| 1  | aks-nodepool1-33200514-0 | 19 days, 0:47:23 |
-| 2  | aks-nodepool1-33200514-1 | 19 days, 0:47:10 |
-| 3  | aks-agentpool-87903270-0 | 19 days, 7:31:36 |
-| 4  | aks-agentpool-17932189-0 | 22 days, 3:28:26 |
-| 5  | aks-nodepool1-54814196-2 | 24 days, 6:43:43 |
-| 6  | aks-nodepool1-54814196-0 | 24 days, 9:39:31 |
-| 7  | aks-nodepool1-54814196-1 | 24 days, 9:39:46 |
-| 8  | aks-nodepool1-12508969-1 | 24 days, 9:46:58 |
-| 9  | u-vm2                    | 25 days, 7:45:34 |
-| 10 | u-vm                     | 0:03:25          |
-| 11 | win10-vs                 | 35 days, 7:40:27 |
-| 12 | win10-vm1                | 26 days, 1:23:09 |
-+----+--------------------------+------------------+
++----+--------------------------+--------------------------------------------------+--------------------+
+| #  | VM Name                  | Runtime                                          | Runtime in Seconds |
++----+--------------------------+--------------------------------------------------+--------------------+
+| 1  | aks-nodepool1-33200514-0 | 2.0 weeks, 5.0 days, 47.0 minutes, 23.0 seconds  |     1644443.0      |
+| 2  | aks-nodepool1-33200514-1 | 2.0 weeks, 5.0 days, 47.0 minutes, 10.0 seconds  |     1644430.0      |
+| 3  | aks-agentpool-87903270-0 | 2.0 weeks, 5.0 days, 7.0 hours, 31.0 minutes     |     1668696.0      |
+| 4  | aks-agentpool-17932189-0 | 3.0 weeks, 1.0 day, 3.0 hours, 28.0 minutes      |     1913306.0      |
+| 5  | aks-nodepool1-54814196-2 | 3.0 weeks, 3.0 days, 6.0 hours, 43.0 minutes     |     2097823.0      |
+| 6  | aks-nodepool1-54814196-0 | 3.0 weeks, 3.0 days, 9.0 hours, 39.0 minutes     |     2108371.0      |
+| 7  | aks-nodepool1-54814196-1 | 3.0 weeks, 3.0 days, 9.0 hours, 39.0 minutes     |     2108386.0      |
+| 8  | aks-nodepool1-12508969-1 | 3.0 weeks, 3.0 days, 9.0 hours, 46.0 minutes     |     2108818.0      |
+| 9  | u-vm2                    | 3.0 weeks, 4.0 days, 7.0 hours, 45.0 minutes     |     2187934.0      |
+| 10 | u-vm                     | 2.0 weeks, 4.0 days, 19.0 hours, 49.0 minutes    |     1626569.0      |
+| 11 | win10-vs                 | 5.0 weeks, 7.0 hours, 40.0 minutes, 27.0 seconds |     3051627.0      |
+| 12 | win10-vm1                | 3.0 weeks, 5.0 days, 1.0 hour, 23.0 minutes      |     2251389.0      |
++----+--------------------------+--------------------------------------------------+--------------------+
 ```
