@@ -3,9 +3,12 @@ A Python 3 tool to parse **Azure Monitor Activity Logs** to retrieve VM uptime f
 
 ## Requirements
 - Python 3
-- Click (pip install Click)
-- PrettyTable (pip install PrettyTable)
+- Click 7.0
+- PrettyTable 0.7.2
 - Download Azure monitor logs, and store them as **QueryResult.csv** in the same folder as azmon-uptime.py
+
+## Install Python packages
+pip install -r requirements.txt
 
 ## Querying Azure Monitor
 
